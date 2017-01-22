@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
-        <variable
-            name="user"
-            type="com.xiaoqianchang.gankreader.bean.User"/>
-    </data>
-
-    <LinearLayout
+    <RelativeLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/activity_splash"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context="com.xiaoqianchang.gankreader.SplashActivity">
+
+        <com.youth.banner.Banner
+            android:id="@+id/banner_splash"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:image_scale_type="fit_xy"
+            app:indicator_drawable_selected="@drawable/banner_red"
+            app:indicator_drawable_unselected="@drawable/banner_grey"
+            app:indicator_width="9dp"
+            app:indicator_height="9dp"
+            app:indicator_margin="3dp"
+            app:is_auto_play="false"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{user.name}"/>
-    </LinearLayout>
+            android:layout_width="17dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/home_adjust_background"
+            android:gravity="center"
+            android:text="立即体验"
+            android:textColor="@color/colorTheme"
+            android:textSize="16sp"/>
+    </RelativeLayout>
 </layout>
