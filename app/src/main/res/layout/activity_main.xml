@@ -10,6 +10,10 @@
         android:fitsSystemWindows="true"
         tools:context=".MainActivity">
 
+        <include
+            android:id="@+id/ic_app_bar_main"
+            layout="@layout/app_bar_main"/>
+
         <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
