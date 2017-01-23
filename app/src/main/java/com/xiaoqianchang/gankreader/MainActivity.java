@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.xiaoqianchang.gankreader.adapter.MainFragmentPagerAdapter;
 import com.xiaoqianchang.gankreader.databinding.ActivityMainBinding;
@@ -21,12 +23,15 @@ import com.xiaoqianchang.gankreader.fragment.GankFragment;
 import com.xiaoqianchang.gankreader.fragment.OneFragment;
 import com.xiaoqianchang.gankreader.http.rx.RxBus;
 import com.xiaoqianchang.gankreader.http.rx.RxCodeConstants;
+import com.xiaoqianchang.gankreader.utils.ImageLoadUtils;
 
 import java.util.ArrayList;
 
 import rx.functions.Action1;
 
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
+import static com.xiaoqianchang.gankreader.R.id.fab;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
     private ActivityMainBinding mBinding;
     private DrawerLayout drawerLayout;
@@ -47,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         initRxBus();
         initContentFragment();
         initDrawerLayout();
+        initListener();
     }
 
     private void initId() {
@@ -99,6 +105,65 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         navigationView.inflateHeaderView(R.layout.nav_header_main);
         View headerView = navigationView.getHeaderView(0);
         ImageView ivAvatar = (ImageView) headerView.findViewById(R.id.iv_avatar);
+        ImageLoadUtils.getInstance().displayCircle(ivAvatar, R.drawable.ic_avatar);
+        LinearLayout llNavHomepage = (LinearLayout) headerView.findViewById(R.id.ll_nav_homepage);
+        LinearLayout llNavScanDownload = (LinearLayout) headerView.findViewById(R.id.ll_nav_scan_download);
+        LinearLayout llNavDeedback = (LinearLayout) headerView.findViewById(R.id.ll_nav_deedback);
+        LinearLayout llNavAbout = (LinearLayout) headerView.findViewById(R.id.ll_nav_about);
+        llNavHomepage.setOnClickListener(this);
+        llNavScanDownload.setOnClickListener(this);
+        llNavDeedback.setOnClickListener(this);
+        llNavAbout.setOnClickListener(this);
+    }
+
+    private void initListener() {
+        flTitleMenu.setOnClickListener(this);
+        mBinding.icAppBarMain.ivTitleGank.setOnClickListener(this);
+        mBinding.icAppBarMain.ivTitleDou.setOnClickListener(this);
+        mBinding.icAppBarMain.ivTitleOne.setOnClickListener(this);
+        floatingActionButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fl_title_menu:
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
+            case R.id.iv_title_gank: // 干货栏
+                if (viewPager.getCurrentItem() != 0) {
+                    ivTitleGank.setSelected(true);
+                    ivTitleOne.setSelected(false);
+                    ivTitleDou.setSelected(false);
+                    viewPager.setCurrentItem(0);
+                }
+                break;
+            case R.id.iv_title_one: // 电影栏
+                if (viewPager.getCurrentItem() != 1) {
+                    ivTitleOne.setSelected(true);
+                    ivTitleGank.setSelected(false);
+                    ivTitleDou.setSelected(false);
+                    viewPager.setCurrentItem(1);
+                }
+                break;
+            case R.id.iv_title_dou: // 书籍栏
+                if (viewPager.getCurrentItem() != 2) {
+                    ivTitleDou.setSelected(true);
+                    ivTitleOne.setSelected(false);
+                    ivTitleGank.setSelected(false);
+                    viewPager.setCurrentItem(2);
+                }
+                break;
+            case R.id.ll_nav_homepage: // 主页
+                mBinding.drawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.ll_nav_scan_download: //扫码下载
+                break;
+            case R.id.ll_nav_deedback: // 问题反馈
+                break;
+            case R.id.ll_nav_about: // 关于云阅
+                break;
+        }
     }
 
     @Override

@@ -34,19 +34,19 @@ public class ImageLoadUtils {
     /**
      * 图片默认加载器
      *
-     * @param url
      * @param imageView
+     * @param resId
      */
-    public void displayDefault(String url, ImageView imageView) {
+    public void displayDefault(ImageView imageView, int resId) {
         Glide.with(imageView.getContext())
-                .load(url)
+                .load(resId)
                 .crossFade(500)
                 .into(imageView);
     }
 
-    public void displayCircle(String url, ImageView imageView) {
+    public void displayCircle(ImageView imageView, int resId) {
         Glide.with(imageView.getContext())
-                .load(url)
+                .load(resId)
                 .transform(new GlideCircleTransform(imageView.getContext()))
                 .into(imageView);
     }
