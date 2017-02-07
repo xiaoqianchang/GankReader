@@ -11,11 +11,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.xiaoqianchang.gankreader.activity.NavAboutActivity;
+import com.xiaoqianchang.gankreader.activity.NavDownloadActivity;
+import com.xiaoqianchang.gankreader.activity.NavFeedBackActivity;
+import com.xiaoqianchang.gankreader.activity.NavHomePageActivity;
 import com.xiaoqianchang.gankreader.adapter.MainFragmentPagerAdapter;
 import com.xiaoqianchang.gankreader.databinding.ActivityMainBinding;
 import com.xiaoqianchang.gankreader.fragment.BookFragment;
@@ -155,13 +160,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.ll_nav_homepage: // 主页
-                mBinding.drawerLayout.closeDrawer(GravityCompat.START);
+                drawerLayout.closeDrawer(GravityCompat.START);
+                drawerLayout.postDelayed(() -> {
+                    NavHomePageActivity.start(this);
+                }, 360);
                 break;
             case R.id.ll_nav_scan_download: //扫码下载
+                drawerLayout.closeDrawer(GravityCompat.START);
+                drawerLayout.postDelayed(() -> {
+                    NavDownloadActivity.start(this);
+                }, 360);
                 break;
             case R.id.ll_nav_deedback: // 问题反馈
+                drawerLayout.closeDrawer(GravityCompat.START);
+                drawerLayout.postDelayed(() -> {
+                    NavFeedBackActivity.start(this);
+                }, 360);
                 break;
             case R.id.ll_nav_about: // 关于云阅
+                drawerLayout.closeDrawer(GravityCompat.START);
+                drawerLayout.postDelayed(() -> {
+                    NavAboutActivity.start(this);
+                }, 360);
                 break;
         }
     }
@@ -173,11 +193,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onPageSelected(int position) {
-
+        switch (position) {
+            case 0:
+                ivTitleGank.setSelected(true);
+                ivTitleOne.setSelected(false);
+                ivTitleDou.setSelected(false);
+                break;
+            case 1:
+                ivTitleOne.setSelected(true);
+                ivTitleGank.setSelected(false);
+                ivTitleDou.setSelected(false);
+                break;
+            case 2:
+                ivTitleDou.setSelected(true);
+                ivTitleOne.setSelected(false);
+                ivTitleGank.setSelected(false);
+                break;
+        }
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            } else {
+                // 不退出程序，进入后台
+                moveTaskToBack(true);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
