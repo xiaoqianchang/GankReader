@@ -88,12 +88,11 @@ public abstract class BaseFragment<SV extends ViewDataBinding> extends Fragment 
      * 生命周期会先执行 setUserVisibleHint 再执行onActivityCreated
      * 在 onActivityCreated 之后第一次显示加载数据，只加载一次
      */
-    private void loadData() {
+    protected void loadData() {
 
     }
 
-    private void onInvisible() {
-
+    protected void onInvisible() {
     }
 
     @Override

@@ -16,14 +16,33 @@ import java.util.List;
  * @version 1.0
  */
 
-public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
+public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private List<?> mFragmentList;
     private List<String> mTitleList;
 
-    public MainFragmentPagerAdapter(FragmentManager fm, ArrayList<Fragment> fragments) {
+    /**
+     * default，主页使用
+     *
+     * @param fm
+     * @param fragments
+     */
+    public MyFragmentPagerAdapter(FragmentManager fm, List<?> fragments) {
         super(fm);
         this.mFragmentList = fragments;
+    }
+
+    /**
+     * 接收首页传递的标题
+     *
+     * @param fm
+     * @param mFragmentList
+     * @param mTitleList
+     */
+    public MyFragmentPagerAdapter(FragmentManager fm, List<?> mFragmentList, List<String> mTitleList) {
+        super(fm);
+        this.mFragmentList = mFragmentList;
+        this.mTitleList = mTitleList;
     }
 
     @Override

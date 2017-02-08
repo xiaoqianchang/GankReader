@@ -21,7 +21,7 @@ import com.xiaoqianchang.gankreader.activity.NavAboutActivity;
 import com.xiaoqianchang.gankreader.activity.NavDownloadActivity;
 import com.xiaoqianchang.gankreader.activity.NavFeedBackActivity;
 import com.xiaoqianchang.gankreader.activity.NavHomePageActivity;
-import com.xiaoqianchang.gankreader.adapter.MainFragmentPagerAdapter;
+import com.xiaoqianchang.gankreader.adapter.MyFragmentPagerAdapter;
 import com.xiaoqianchang.gankreader.databinding.ActivityMainBinding;
 import com.xiaoqianchang.gankreader.fragment.BookFragment;
 import com.xiaoqianchang.gankreader.fragment.GankFragment;
@@ -31,10 +31,6 @@ import com.xiaoqianchang.gankreader.http.rx.RxCodeConstants;
 import com.xiaoqianchang.gankreader.utils.ImageLoadUtils;
 
 import java.util.ArrayList;
-
-import rx.functions.Action1;
-
-import static com.xiaoqianchang.gankreader.R.id.fab;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
@@ -90,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragments.add(new GankFragment());
         fragments.add(new OneFragment());
         fragments.add(new BookFragment());
-        MainFragmentPagerAdapter mainFragmentPagerAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager(), fragments);
+        MyFragmentPagerAdapter mainFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(mainFragmentPagerAdapter);
         // 设置ViewPager最大缓存的页面个数(cpu消耗少)
         viewPager.setOffscreenPageLimit(2);

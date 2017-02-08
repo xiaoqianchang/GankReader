@@ -36,6 +36,8 @@
         </activity>
         <activity android:name=".activity.NavAboutActivity">
         </activity>
+        <activity android:name=".view.webview.WebViewActivity">
+        </activity>
     </application>
 
 </manifest>
