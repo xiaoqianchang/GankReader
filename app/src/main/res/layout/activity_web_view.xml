@@ -36,7 +36,7 @@
             android:layout_height="match_parent">
 
             <WebView
-                android:id="@+id/webview_detail"
+                android:id="@+id/wv_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbarSize="3dp"
