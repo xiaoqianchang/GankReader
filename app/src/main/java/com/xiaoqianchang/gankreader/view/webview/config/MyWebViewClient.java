@@ -6,9 +6,7 @@ import android.net.Uri;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.example.jingbin.cloudreader.utils.CheckNetwork;
-import com.example.jingbin.cloudreader.view.webview.WebViewActivity;
-
+import com.xiaoqianchang.gankreader.view.webview.WebViewActivity;
 
 /**
  * Created by jingbin on 2016/11/17.
@@ -60,14 +58,14 @@ public class MyWebViewClient extends WebViewClient {
 
     @Override
     public void onPageFinished(WebView view, String url) {
-        if (mActivity.mProgress90) {
+        if (mActivity.isProgress90) {
             mIWebPageView.hindProgressBar();
         } else {
-            mActivity.mPageFinish = true;
+            mActivity.isPageFinished = true;
         }
-        if (!CheckNetwork.isNetworkConnected(mActivity)) {
-            mIWebPageView.hindProgressBar();
-        }
+//        if (!CheckNetwork.isNetworkConnected(mActivity)) {
+//            mIWebPageView.hindProgressBar();
+//        }
         // html加载完成之后，添加监听图片的点击js函数
         mIWebPageView.addImageClickListener();
         super.onPageFinished(view, url);

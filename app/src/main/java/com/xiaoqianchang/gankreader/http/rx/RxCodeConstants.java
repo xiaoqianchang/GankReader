@@ -1,7 +1,7 @@
 package com.xiaoqianchang.gankreader.http.rx;
 
 /**
- * $desc$
+ * RxBus 分发常量
  * <p>
  * Created by Chang.Xiao on 2017/1/23.
  *

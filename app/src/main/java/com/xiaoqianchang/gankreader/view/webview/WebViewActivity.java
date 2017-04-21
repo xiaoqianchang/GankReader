@@ -44,7 +44,7 @@ public class WebViewActivity extends AppCompatActivity implements IWebPageView {
     // 进度条是否加载到90%
     public boolean isProgress90;
     // 网页是否加载完成
-    private boolean isPageFinished;
+    public boolean isPageFinished;
     private MyWebViewClient mWebViewClient;
     private MyWebChromeClient mWebChromeClient;
     // title
